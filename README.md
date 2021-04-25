@@ -1,4 +1,6 @@
-# Snapdrop 
+# Snapdrop
+
+> Use this only in a local private network.
 
 [Snapdrop](https://snapdrop.net): local file sharing in your browser. Inspired by Apple's Airdrop.
 

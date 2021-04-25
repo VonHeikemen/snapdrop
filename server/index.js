@@ -22,7 +22,19 @@ class SnapdropServer {
         this._wss.on('connection', (socket, request) => this._onConnection(new Peer(socket, request)));
         this._wss.on('headers', (headers, response) => this._onHeaders(headers, response));
 
-        this._rooms = {};
+        this._rooms = new Proxy({}, {
+          get(target, prop) {
+            return target['room'];
+          },
+          set(target, prop, value) {
+            target['room'] = value;
+            return target['room'];
+          },
+          deleteProperty(target, prop) {
+            delete target['room'];
+            return true;
+          }
+        });
 
         console.log('Snapdrop is running on port', port);
     }
